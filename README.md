@@ -33,7 +33,7 @@ A user in Gorakhpur sees:
 
 ---
 
-## Features
+## ✨ Features
 
 * **AI Chat (Vernacular)** — Hindi / Tamil / Telugu
 * **FD Comparison** — filter, sort, safety tags
@@ -45,7 +45,7 @@ A user in Gorakhpur sees:
 
 ## Demo Video
 
-[![Watch Demo]](https://youtu.be/5MkT9rSK2ds)
+[![Watch Demo](https://img.youtube.com/vi/YOUR_ID/0.jpg)](https://youtu.be/5MkT9rSK2ds)
 ---
 
 ## Screenshots (Flow)
