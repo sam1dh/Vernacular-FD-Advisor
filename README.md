@@ -33,7 +33,7 @@ A user in Gorakhpur sees:
 
 ---
 
-## ✨ Features
+## Features
 
 * **AI Chat (Vernacular)** — Hindi / Tamil / Telugu
 * **FD Comparison** — filter, sort, safety tags
