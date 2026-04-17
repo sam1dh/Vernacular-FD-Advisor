@@ -1,14 +1,14 @@
-# 🏦 FD सलाहकार — Vernacular FD Advisor
+# FD सलाहकार — Vernacular FD Advisor
 
 > **Hackathon Project** | Making Fixed Deposits simple for first-time users through vernacular AI
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-black?style=for-the-badge\&logo=vercel)](https://your-vercel-url.vercel.app)
-[![Backend](https://img.shields.io/badge/Backend-Render-purple?style=for-the-badge)](https://your-backend.onrender.com)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-black?style=for-the-badge\&logo=vercel)](https://vernacular-fd-advisor-seven.vercel.app/)
+[![Backend](https://img.shields.io/badge/Backend-Render-purple?style=for-the-badge)]()
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
 ---
 
-## 🎯 Problem
+## Problem
 
 A user in Gorakhpur sees:
 
@@ -22,14 +22,14 @@ A user in Gorakhpur sees:
 
 ---
 
-## 💡 Solution
+## Solution
 
 **FD सलाहकार** explains everything in **simple Hindi, Tamil, Telugu** — like a trusted friend:
 
-* 💬 Explains jargon (p.a., tenure, DICGC)
-* 🧮 Shows exact maturity amount
-* 🏦 Compares banks clearly
-* 🧭 Guides step-by-step FD booking
+* Explains jargon (p.a., tenure, DICGC)
+* Hows exact maturity amount
+* Compares banks clearly
+* Guides step-by-step FD booking
 
 ---
 
@@ -98,9 +98,9 @@ OpenRouter API (AI)
 
 ---
 
-## 🚀 Local Setup (Step-by-Step)
+## Local Setup (Step-by-Step)
 
-### 🔹 1. Clone the repo
+### 1. Clone the repo
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/Vernacular-FD-Advisor.git
@@ -109,31 +109,31 @@ cd Vernacular-FD-Advisor
 
 ---
 
-## 🟣 Backend Setup
+## Backend Setup
 
 ```bash
 cd Backend
 npm install
 ```
 
-### 📂 Create `.env` inside Backend
+### Create `.env` inside Backend
 
 ```env
 OPENROUTER_API_KEY=your_secret_key_here
 PORT=3001
 ```
 
-> ⚠️ Never push `.env` to GitHub
+> Never push `.env` to GitHub
 
 ---
 
-### ▶️ Run Backend
+### Run Backend
 
 ```bash
 npm start
 ```
 
-👉 Runs on:
+Runs on:
 
 ```
 http://localhost:3001
@@ -141,7 +141,7 @@ http://localhost:3001
 
 ---
 
-## 🔵 Frontend Setup
+## Frontend Setup
 
 Open new terminal:
 
@@ -150,7 +150,7 @@ cd Frontend
 npm install
 ```
 
-### 📂 Create `.env` inside Frontend
+### Create `.env` inside Frontend
 
 ```env
 VITE_API_URL=http://localhost:3001
@@ -158,25 +158,24 @@ VITE_API_URL=http://localhost:3001
 
 ---
 
-### ▶️ Run Frontend
+### Run Frontend
 
 ```bash
 npm run dev
 ```
 
-👉 Runs on:
+Runs on:
 
 ```
 http://localhost:5173
 ```
-
 ---
 
-## 🧪 Test
+## Test
 
 Open browser:
 
-👉 http://localhost:5173
+http://localhost:5173
 
 Try:
 
@@ -184,49 +183,10 @@ Try:
 * “8.5% ka matlab kya hai?”
 
 ---
-
-## 🌐 Deployment
-
-| Layer    | Platform   |
-| -------- | ---------- |
-| Frontend | Vercel     |
-| Backend  | Render     |
-| AI       | OpenRouter |
-
----
-
-## 🔐 Environment Variables
-
-### Backend (Render)
-
-```
-OPENROUTER_API_KEY=your_key
-```
-
----
-
-### Frontend (Vercel)
-
-```
-VITE_API_URL=https://your-backend.onrender.com
-```
-
----
-
-## 🏁 Final Output
+## Final Output
 
 ```
 User → Frontend → Backend → AI → Response
 ```
 
 ---
-
-## 🙌 Credits
-
-Built for hackathon to improve **financial literacy in India 🇮🇳**
-
----
-
-## ⭐ Tagline
-
-> **“FD सलाहकार — Investing made simple in your language”**
