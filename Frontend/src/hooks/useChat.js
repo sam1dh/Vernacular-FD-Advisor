@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { askAdvisor } from '../api/gemini'
 
 function timestamp() {
@@ -9,6 +9,12 @@ const WELCOME = {
   hi: 'नमस्ते! मैं आपका FD सलाहकार हूँ। आप मुझसे Fixed Deposit के बारे में कोई भी सवाल पूछ सकते हैं। 😊',
   ta: 'வணக்கம்! நான் உங்கள் FD ஆலோசகர். Fixed Deposit பற்றி எந்த கேள்வியும் கேளுங்கள். 😊',
   te: 'నమస్కారం! నేను మీ FD సలహాదారుడిని. Fixed Deposit గురించి ఏదైనా అడగండి. 😊',
+}
+
+const FEEDBACK = {
+  hi: 'क्या confusing लगा? मैं मदद करता हूँ 🙂',
+  ta: 'குழப்பமாக இருந்தால் சொல்லுங்கள். நான் உதவுகிறேன் 🙂',
+  te: 'గందరగోళం ఉంటే చెప్పండి. నేను సహాయం చేస్తాను 🙂',
 }
 
 export function useChat(language = 'hi', fdContext = null) {
@@ -22,6 +28,18 @@ export function useChat(language = 'hi', fdContext = null) {
   ])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
+
+  /* Update welcome message when language changes */
+  useEffect(() => {
+    setMessages([
+      {
+        id: 'welcome',
+        role: 'assistant',
+        text: WELCOME[language] || WELCOME.hi,
+        time: timestamp(),
+      },
+    ])
+  }, [language])
 
 function detectIntent(msg) {
   const m = msg.toLowerCase()
@@ -63,7 +81,7 @@ function detectIntent(msg) {
           {
             id: Date.now().toString() + 'f',
             role: 'assistant',
-            text: "Kya confusing laga? Main help karta hoon 🙂",
+            text: FEEDBACK[language] || FEEDBACK.hi,
             time: timestamp(),
           },
         ])
