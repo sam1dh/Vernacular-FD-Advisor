@@ -188,16 +188,3 @@ Visit **http://localhost:5173** in your browser. You should see the FD सला
 
 ---
 
-## ☁️ Deployment Guide
-
-### Option A: Vercel (Recommended — Free, 5 minutes)
-
-Vercel can host both the frontend and the backend as serverless functions.
-
-#### Step 1 — Push to GitHub
-
-```bash
-git add .
-git commit -m "Initial commit"
-git push origin main
-```
