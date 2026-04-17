@@ -28,6 +28,14 @@
      Recommended: 3–4 images showing different tabs/flows
      Format: ![Alt Text](./screenshots/filename.png)
      ═══════════════════════════════════════════════════════════════ -->
+![Alt Text](./Screenshot/Screenshot%20From%202026-04-18%2001-20-57.png)
+![Alt Text](./Screenshot/Screenshot%20From%202026-04-18%2001-24-52.png)
+![Alt Text](./Screenshot/Screenshot%20From%202026-04-18%2001-25-12.png)
+![Alt Text](./Screenshot/Screenshot%20From%202026-04-18%2001-25-59.png)
+![Alt Text](./Screenshot/Screenshot%20From%202026-04-18%2001-26-28.png)
+![Alt Text](./Screenshot/Screenshot%20From%202026-04-18%2001-28-40.png)
+![Alt Text](./Screenshot/Screenshot%20From%202026-04-18%2001-29-02.png)
+![Alt Text](./Screenshot/Screenshot%20From%202026-04-18%2001-29-27.png)
 
 | FD Compare Tab | AI Chat (Hindi) | Calculator |
 |:-:|:-:|:-:|
