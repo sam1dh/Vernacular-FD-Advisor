@@ -35,30 +35,30 @@ A user in Gorakhpur sees:
 
 ## ✨ Features
 
-* 💬 **AI Chat (Vernacular)** — Hindi / Tamil / Telugu
-* 🏦 **FD Comparison** — filter, sort, safety tags
-* 🧮 **FD Calculator** — sliders + visual returns
-* ✅ **Booking Flow** — step-by-step guided form
-* 🌐 **Multilingual UI** — instant language switch
+* **AI Chat (Vernacular)** — Hindi / Tamil / Telugu
+* **FD Comparison** — filter, sort, safety tags
+* **FD Calculator** — sliders + visual returns
+* **Booking Flow** — step-by-step guided form
+* **Multilingual UI** — instant language switch
 
 ---
 
-## 📽️ Demo Video
+## Demo Video
 
-> 🎬 *Add your demo video link here*
+> Add your demo video link here*
 
 ---
 
-## 📸 Screenshots (Flow)
+## Screenshots (Flow)
 
-### 🏦 Compare & Select
+### Compare & Select
 
 <p align="center">
   <img src="./Screenshot/Screenshot From 2026-04-18 01-20-57.png" width="250"/>
   <img src="./Screenshot/Screenshot From 2026-04-18 01-24-52.png" width="250"/>
 </p>
 
-### 📊 Booking Flow
+### Booking Flow
 
 <p align="center">
   <img src="./Screenshot/Screenshot From 2026-04-18 01-25-12.png" width="250"/>
@@ -66,19 +66,19 @@ A user in Gorakhpur sees:
   <img src="./Screenshot/Screenshot From 2026-04-18 01-26-28.png" width="250"/>
 </p>
 
-### ✅ Confirmation
+### Confirmation
 
 <p align="center">
   <img src="./Screenshot/Screenshot From 2026-04-18 01-28-40.png" width="250"/>
 </p>
 
-### 🧮 Calculator
+### Calculator
 
 <p align="center">
   <img src="./Screenshot/Screenshot From 2026-04-18 01-29-02.png" width="250"/>
 </p>
 
-### 💬 AI Chat
+### AI Chat
 
 <p align="center">
   <img src="./Screenshot/Screenshot From 2026-04-18 01-29-27.png" width="250"/>
@@ -86,7 +86,7 @@ A user in Gorakhpur sees:
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 Frontend (React + Vite)
