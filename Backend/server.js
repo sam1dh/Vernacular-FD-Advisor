@@ -23,8 +23,9 @@ const RAG_SVC_URL = process.env.RAG_SVC_URL || 'http://localhost:8100'
 // separated chain).
 const DEFAULT_MODEL_CHAIN = [
   'google/gemma-4-31b-it:free',        // strong Hindi/Tamil/Telugu
-  'nvidia/nemotron-3.5-lightning:free',
   'inclusionai/ling-3.2-flash:free',
+  'baidu/ernie-5.5-flash-preview:free',
+  'nvidia/nemotron-3.5-lightning:free',
 ]
 const MODEL_CHAIN = (process.env.OPENROUTER_MODEL || '')
   .split(',')
@@ -193,15 +194,25 @@ app.post('/api/chat', async (req, res) => {
         body: JSON.stringify({
           model,
           messages,
-          max_tokens:  350,
+          max_tokens:  700,
           temperature: 0.7,
         }),
       })
 
       if (response.ok) {
         const data  = await response.json()
-        const reply = data.choices?.[0]?.message?.content || ''
-        return res.json({ reply, model })
+        // Some fallback models are reasoning models: they can emit
+        // <think> blocks and burn the token budget before answering.
+        // Strip them and treat an empty answer as a failure so the
+        // chain continues to the next model.
+        let reply = (data.choices?.[0]?.message?.content || '')
+          .replace(/<think>[\s\S]*?<\/think>/gi, '')
+          .trim()
+        if (reply) {
+          return res.json({ reply, model })
+        }
+        console.error(`OpenRouter empty reply from ${model}, trying next`)
+        continue
       }
 
       const err = await response.json().catch(() => ({}))
