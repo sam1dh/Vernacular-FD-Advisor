@@ -67,8 +67,11 @@ def rag_answer(req: AnswerRequest):
 
 
 def main():
+    import os
+
     import uvicorn
-    uvicorn.run(app, host=config.API_HOST, port=config.API_PORT)
+    port = int(os.environ.get("PORT", config.API_PORT))
+    uvicorn.run(app, host=config.API_HOST, port=port)
 
 
 if __name__ == "__main__":

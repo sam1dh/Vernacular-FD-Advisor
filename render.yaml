@@ -1,0 +1,37 @@
+# Render Blueprint: deploys both services from this repo.
+# Create/re-sync via Render Dashboard -> New -> Blueprint -> point at this repo.
+#
+# After first deploy:
+#   * set OPENROUTER_API_KEY on the backend service (Environment tab)
+#   * frontend stays on Vercel; it already points at the backend URL
+services:
+  - type: web
+    name: fd-advisor-backend
+    runtime: node
+    rootDir: Backend
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: RAG_SVC_URL
+        fromService:
+          type: web
+          name: fd-advisor-rag
+          property: host
+      - key: OPENROUTER_API_KEY
+        sync: false          # set manually in the dashboard, never commit it
+      - key: APP_URL
+        value: https://vernacular-fd-advisor-seven.vercel.app
+
+  - type: web
+    name: fd-advisor-rag
+    runtime: python
+    rootDir: .
+    plan: free
+    buildCommand: pip install -r rag/requirements.txt && python -m rag.build
+    startCommand: uvicorn rag.server:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12"

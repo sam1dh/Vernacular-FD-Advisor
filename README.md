@@ -204,6 +204,14 @@ The backend proxies chat to this service (`POST /api/rag/chat`), which
 returns answers **with citations**; without the RAG service the chat
 falls back to the plain LLM advisor.
 
+### Deploying (Render blueprint)
+
+`render.yaml` describes both services — the Node backend and this Python
+RAG service. In Render: **New + → Blueprint → select this repo** → Apply.
+Then set `OPENROUTER_API_KEY` on the backend service. The backend gets
+`RAG_SVC_URL` wired to the RAG service automatically, and the deployed
+`/health` endpoint shows `"rag": {"status": "ok", ...}` when connected.
+
 ---
 
 ## Frontend Setup

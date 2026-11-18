@@ -140,7 +140,7 @@ def llm_answer(query: str, hits: list[dict], language: str = "hi") -> tuple[str,
     import json as _json
     import urllib.request
     body = _json.dumps({
-        "model": os.environ.get("RAG_LLM_MODEL", "gpt-3.5-turbo"),
+        "model": os.environ.get("RAG_LLM_MODEL", "google/gemma-4-31b-it:free"),
         "messages": [
             {"role": "system", "content": LLM_SYSTEM_PROMPT + context},
             {"role": "user", "content": f"Language: {language}\nQuestion: {query}"},

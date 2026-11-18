@@ -17,6 +17,21 @@ const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 // citations. Falls back to plain LLM chat when the service is down.
 const RAG_SVC_URL = process.env.RAG_SVC_URL || 'http://localhost:8100'
 
+// Free OpenRouter models, tried in order. gpt-3.5-turbo was retired from
+// OpenRouter ("no provider serves this model anymore"), so the chat must
+// not depend on a single model id. Override via OPENROUTER_MODEL (comma
+// separated chain).
+const DEFAULT_MODEL_CHAIN = [
+  'google/gemma-4-31b-it:free',        // strong Hindi/Tamil/Telugu
+  'nvidia/nemotron-3.5-lightning:free',
+  'inclusionai/ling-3.2-flash:free',
+]
+const MODEL_CHAIN = (process.env.OPENROUTER_MODEL || '')
+  .split(',')
+  .map((m) => m.trim())
+  .filter(Boolean)
+const CHAT_MODELS = MODEL_CHAIN.length ? MODEL_CHAIN : DEFAULT_MODEL_CHAIN
+
 const LANGUAGE_PROMPTS = {
   hi: `You are a beginner-friendly FD advisor for users in India.
 
@@ -157,37 +172,47 @@ app.post('/api/chat', async (req, res) => {
       ? `\n\nThe user is currently viewing this Fixed Deposit:\nBank: ${fdContext.bank}\nRate: ${fdContext.rate}% p.a.\nTenor: ${fdContext.tenor} months\nMinimum deposit: ₹${fdContext.minAmount?.toLocaleString('en-IN')}\nType: ${fdContext.type}\nInsured: ${fdContext.fdacInsured ? 'Yes, up to ₹5 lakh (DICGC)' : 'No'}\n\nAnswer questions in the context of this specific FD when relevant.`
       : ''
 
-    const response = await fetch(OPENROUTER_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type':  'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-        'HTTP-Referer':  process.env.APP_URL || 'http://localhost:5173',
-        'X-Title':       'Vernacular FD Advisor',
-      },
-      body: JSON.stringify({
-        // mistralai/mistral-7b-instruct is FREE on OpenRouter (no credits needed)
-        // Other free options: google/gemma-3-12b-it:free  |  meta-llama/llama-3.1-8b-instruct:free
-        model: 'gpt-3.5-turbo',
-        messages: [
-          { role: 'system',  content: systemPrompt + contextNote },
-          { role: 'user',    content: userMessage },
-        ],
-        max_tokens:  350,
-        temperature: 0.7,
-      }),
-    })
+    const messages = [
+      { role: 'system',  content: systemPrompt + contextNote },
+      { role: 'user',    content: userMessage },
+    ]
 
-    if (!response.ok) {
-      const err = await response.json()
-      console.error('OpenRouter API Error:', err)
-      return res.status(response.status).json({ error: err.error?.message || 'OpenRouter request failed' })
+    // Try each model in the chain until one responds; free models get
+    // rate-limited or retired, so a single model id is a single point of
+    // failure.
+    let lastErr = null
+    for (const model of CHAT_MODELS) {
+      const response = await fetch(OPENROUTER_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type':  'application/json',
+          'Authorization': `Bearer ${apiKey}`,
+          'HTTP-Referer':  process.env.APP_URL || 'http://localhost:5173',
+          'X-Title':       'Vernacular FD Advisor',
+        },
+        body: JSON.stringify({
+          model,
+          messages,
+          max_tokens:  350,
+          temperature: 0.7,
+        }),
+      })
+
+      if (response.ok) {
+        const data  = await response.json()
+        const reply = data.choices?.[0]?.message?.content || ''
+        return res.json({ reply, model })
+      }
+
+      const err = await response.json().catch(() => ({}))
+      console.error(`OpenRouter API Error [${model}]:`, err.error?.message || response.status)
+      lastErr = err
+      // 429/5xx/model-retired → try the next model in the chain
     }
 
-    const data  = await response.json()
-    const reply = data.choices?.[0]?.message?.content || ''
-
-    res.json({ reply })
+    return res.status(502).json({
+      error: lastErr?.error?.message || 'All OpenRouter models failed',
+    })
 
   } catch (error) {
     console.error('Server error:', error.message)
@@ -201,11 +226,12 @@ app.get('/health', async (_req, res) => {
   try {
     rag = await (await fetch(`${RAG_SVC_URL}/health`)).json()
   } catch { rag = { status: 'down' } }
-  res.json({ status: 'ok', model: 'gpt-3.5-turbo', rag })
+  res.json({ status: 'ok', models: CHAT_MODELS, rag })
 })
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running  → http://localhost:${PORT}`)
   console.log(`📡 Chat endpoint   → POST http://localhost:${PORT}/api/chat`)
-  console.log(`🔑 Model           → gpt-3.5-turbo`)
+  console.log(`📡 RAG chat        → POST http://localhost:${PORT}/api/rag/chat`)
+  console.log(`🔑 Model chain     → ${CHAT_MODELS.join(' | ')}`)
 })
