@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
-import { askAdvisor } from '../api/gemini'
+import { askAdvisor, askRag } from '../api/gemini'
 
 function timestamp() {
   return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
@@ -94,14 +94,28 @@ function detectIntent(msg) {
             ? `User selected ${fdContext.bank} with ${fdContext.rate}% interest`
             : ""
 
-          const reply = await askAdvisor({
+        // Prefer the grounded RAG pipeline (retrieval + citations).
+        // Falls back to the plain LLM advisor if the RAG service is down.
+        let reply = ''
+        let citations = []
+        try {
+          const rag = await askRag({
+            userMessage: contextText + "\nUser: " + trimmed,
+            language,
+          })
+          reply = rag.reply
+          citations = rag.citations
+        } catch (ragErr) {
+          console.warn('RAG unavailable, falling back to plain advisor:', ragErr.message)
+          reply = await askAdvisor({
             userMessage: contextText + "\nUser: " + trimmed,
             language,
             fdContext
           })
+        }
         setMessages((prev) => [
           ...prev,
-          { id: Date.now().toString() + 'r', role: 'assistant', text: reply, time: timestamp() },
+          { id: Date.now().toString() + 'r', role: 'assistant', text: reply, citations, time: timestamp() },
         ])
       } catch (err) {
         const errorText = {

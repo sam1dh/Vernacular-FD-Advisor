@@ -1,0 +1,28 @@
+{"qid": "q01", "type": "answerable", "question": "How much deposit is insured by DICGC?", "gold_doc_id": "dicgc_insurance", "key_terms": ["5 lakh", "principal", "interest"]}
+{"qid": "q02", "type": "answerable", "question": "Is my money in a small finance bank safe? Is Suryoday insured?", "gold_doc_id": "small_finance_banks", "key_terms": ["scheduled commercial banks", "insured", "5 lakh"]}
+{"qid": "q03", "type": "answerable", "question": "8.5% p.a. ka matlab kya hai?", "gold_doc_id": "fd_basics", "key_terms": ["per annum", "one year"]}
+{"qid": "q04", "type": "answerable", "question": "If I put 1 lakh for 1 year at 8.5% quarterly compounding, how much will I get at maturity?", "gold_doc_id": "compounding_maturity", "key_terms": ["1,08,839", "quarterly"]}
+{"qid": "q05", "type": "answerable", "question": "What happens if I break my FD before 12 months?", "gold_doc_id": "premature_withdrawal", "key_terms": ["penalty", "rate", "period"]}
+{"qid": "q06", "type": "answerable", "question": "Does the bank deduct tax on FD interest?", "gold_doc_id": "tax_tds", "key_terms": ["TDS", "194A", "50,000"]}
+{"qid": "q07", "type": "answerable", "question": "Senior citizen ko FD par kitni extra interest milti hai?", "gold_doc_id": "senior_citizen_rates", "key_terms": ["0.50", "60"]}
+{"qid": "q08", "type": "answerable", "question": "What tax deduction do senior citizens get on deposit interest?", "gold_doc_id": "section_80ttb", "key_terms": ["80TTB", "50,000"]}
+{"qid": "q09", "type": "answerable", "question": "Monthly interest payout chahiye ya ek saath end mein? Kya farak hai?", "gold_doc_id": "cumulative_vs_payout", "key_terms": ["non-cumulative", "cumulative", "maturity"]}
+{"qid": "q10", "type": "answerable", "question": "Who pays the deposit money to my nominee if something happens to me?", "gold_doc_id": "nomination_kyc", "key_terms": ["nominee", "receives"]}
+{"qid": "q11", "type": "answerable", "question": "Which documents do I need to open a fixed deposit?", "gold_doc_id": "nomination_kyc", "key_terms": ["KYC", "Aadhaar", "PAN"]}
+{"qid": "q12", "type": "answerable", "question": "Are Ujjivan and Jana bank deposits covered by deposit insurance like big banks?", "gold_doc_id": "dicgc_insurance", "key_terms": ["Small Finance Banks", "insured", "5 lakh"]}
+{"qid": "q13", "type": "answerable", "question": "If a bank fails, how long does it take to get my insured money back?", "gold_doc_id": "dicgc_insurance", "key_terms": ["90 days", "moratorium"]}
+{"qid": "q14", "type": "answerable", "question": "What is Form 15G and when should I submit it?", "gold_doc_id": "tax_tds", "key_terms": ["15G", "taxable limit", "TDS"]}
+{"qid": "q15", "type": "answerable", "question": "Why do small finance banks give higher FD rates than big banks?", "gold_doc_id": "small_finance_banks", "key_terms": ["higher", "lend", "deposit growth"]}
+{"qid": "q16", "type": "answerable", "question": "₹5 lakh se zyada jama karu to kitna safe hai?", "gold_doc_id": "dicgc_insurance", "key_terms": ["above ₹5 lakh", "not insured", "spread"]}
+{"qid": "q17", "type": "answerable", "question": "What does quarterly compounding mean for my FD?", "gold_doc_id": "compounding_maturity", "key_terms": ["every 3 months", "added", "balance"]}
+{"qid": "q18", "type": "answerable", "question": "Can I withdraw only part of my FD early?", "gold_doc_id": "premature_withdrawal", "key_terms": ["partial", "premature withdrawal"]}
+{"qid": "q19", "type": "answerable", "question": "How much TDS threshold applies for senior citizens from 2025?", "gold_doc_id": "tax_tds", "key_terms": ["1,00,000", "senior"]}
+{"qid": "q20", "type": "answerable", "question": "Does nomination mean the nominee keeps all the money legally?", "gold_doc_id": "nomination_kyc", "key_terms": ["legal heirs", "nomination does not override"]}
+{"qid": "q21", "type": "answerable", "question": "8.5% rate par effective yield kitna hota hai quarterly compounding se?", "gold_doc_id": "compounding_maturity", "key_terms": ["8.77%", "effective annual yield"]}
+{"qid": "q22", "type": "answerable", "question": "PAN dena zaroori hai FD ke liye? PAN na do to kya hoga?", "gold_doc_id": "nomination_kyc", "key_terms": ["PAN", "20%", "10%"]}
+{"qid": "q23", "type": "unanswerable", "question": "Should I invest in mutual funds instead of FD?", "gold_doc_id": null, "key_terms": []}
+{"qid": "q24", "type": "unanswerable", "question": "What is the current stock price of SBI?", "gold_doc_id": null, "key_terms": []}
+{"qid": "q25", "type": "unanswerable", "question": "Bitcoin mein paisa lagana chahiye?", "gold_doc_id": null, "key_terms": []}
+{"qid": "q26", "type": "unanswerable", "question": "How do I get a personal loan at a low interest rate?", "gold_doc_id": null, "key_terms": []}
+{"qid": "q27", "type": "unanswerable", "question": "Which credit card gives the best cashback?", "gold_doc_id": null, "key_terms": []}
+{"qid": "q28", "type": "unanswerable", "question": "What is the weather in Gorakhpur today?", "gold_doc_id": null, "key_terms": []}

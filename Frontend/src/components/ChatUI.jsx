@@ -48,6 +48,22 @@ export default function ChatUI({ language, fdContext, pendingMsg, onPendingMsgCo
         {messages.map((msg) => (
           <div key={msg.id} className={`chat-bubble ${msg.role}`}>
             <div className="bubble-content">{msg.text}</div>
+            {msg.citations?.length > 0 && (
+              <div className="chat-citations">
+                {msg.citations.map((c) => (
+                  <a
+                    key={c.n}
+                    className="chat-citation"
+                    href={c.source_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={c.heading}
+                  >
+                    [{c.n}] {c.publisher}
+                  </a>
+                ))}
+              </div>
+            )}
             <div className="bubble-time">{msg.time}</div>
           </div>
         ))}

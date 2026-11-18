@@ -13,6 +13,10 @@ app.use(express.json())
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 
+// RAG service (Python FastAPI, see /rag). Provides grounded answers with
+// citations. Falls back to plain LLM chat when the service is down.
+const RAG_SVC_URL = process.env.RAG_SVC_URL || 'http://localhost:8100'
+
 const LANGUAGE_PROMPTS = {
   hi: `You are a beginner-friendly FD advisor for users in India.
 
@@ -49,6 +53,23 @@ TONE:
 - Be neutral and factual
 - DO NOT give advice or recommendations
 `,
+ta: `You are a beginner-friendly FD advisor for users in India.
+
+STRICT RULES:
+- Always reply in simple Tamil only (no English mixing unless user uses English)
+
+BEHAVIOR:
+- If user is confused → guide step-by-step
+- If user asks about safety → explain ₹5 lakh insurance simply
+
+TONE:
+- Neutral, no advice
+
+DO NOT:
+- give opinions
+- mix English unnecessarily
+- repeat answers
+`,
 te: `You are a beginner-friendly FD advisor for users in India.
 
 STRICT RULES:
@@ -67,6 +88,50 @@ DO NOT:
 - repeat answers
 `,
 }
+
+/**
+ * POST /api/rag/chat
+ * Retrieval-augmented chat: retrieves grounded evidence from the knowledge
+ * base (Python RAG service), then answers. Two modes:
+ *   - default: extractive answer built from retrieved chunks, with citations
+ *   - OPENROUTER_API_KEY set → LLM answers strictly from the retrieved
+ *     passages (prompt forbids outside knowledge; reply is discarded and
+ *     replaced with the extractive answer if it lacks citation markers)
+ */
+app.post('/api/rag/chat', async (req, res) => {
+  try {
+    const { userMessage, language = 'hi' } = req.body
+    if (!userMessage?.trim()) {
+      return res.status(400).json({ error: 'userMessage is required' })
+    }
+
+    const mode = process.env.OPENROUTER_API_KEY ? 'llm' : 'extractive'
+    const ragRes = await fetch(`${RAG_SVC_URL}/rag/answer`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: userMessage, language, mode }),
+    })
+
+    if (!ragRes.ok) {
+      const err = await ragRes.json().catch(() => ({}))
+      console.error('RAG service error:', ragRes.status, err)
+      return res.status(ragRes.status).json({ error: err.detail || 'RAG service unavailable' })
+    }
+
+    const out = await ragRes.json()
+    res.json({
+      reply: out.answer,
+      citations: out.citations,
+      abstained: out.abstained,
+      confidence: out.confidence,
+      mode: out.mode,
+      sources: out.retrieved?.slice(0, 3) ?? [],
+    })
+  } catch (error) {
+    console.error('RAG proxy error:', error.message)
+    res.status(502).json({ error: 'RAG service unreachable — start it with: python -m rag.server' })
+  }
+})
 
 /**
  * POST /api/chat
@@ -131,7 +196,13 @@ app.post('/api/chat', async (req, res) => {
 })
 
 // Health check
-app.get('/health', (_req, res) => res.json({ status: 'ok', model: 'gpt-3.5-turbo' }))
+app.get('/health', async (_req, res) => {
+  let rag = { status: 'unknown' }
+  try {
+    rag = await (await fetch(`${RAG_SVC_URL}/health`)).json()
+  } catch { rag = { status: 'down' } }
+  res.json({ status: 'ok', model: 'gpt-3.5-turbo', rag })
+})
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running  → http://localhost:${PORT}`)

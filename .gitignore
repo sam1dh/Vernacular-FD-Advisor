@@ -30,3 +30,9 @@ Thumbs.db
 # Logs
 logs/
 *.log
+
+# Python RAG venv + caches (dataset & index ARE committed on purpose)
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/

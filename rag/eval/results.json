@@ -1,0 +1,692 @@
+{
+  "corpus": {
+    "documents": 10,
+    "chunks": 46
+  },
+  "questions": {
+    "answerable": 22,
+    "unanswerable": 6
+  },
+  "retrieval": {
+    "n": 22,
+    "recall@2": 1.0,
+    "recall@5": 1.0,
+    "mrr@5": 0.9091,
+    "ndcg@5": 0.5171,
+    "false_refusals": 0
+  },
+  "abstention": {
+    "n": 6,
+    "correct_refusals": 6,
+    "abstention_accuracy": 1.0
+  },
+  "answers": {
+    "n": 22,
+    "answered_n": 22,
+    "groundedness": 1.0,
+    "correct_loose": 1.0
+  },
+  "latency_ms_per_query": 24.9,
+  "detail": {
+    "retrieval_rows": [
+      {
+        "qid": "q01",
+        "question": "How much deposit is insured by DICGC?",
+        "gold_doc": "dicgc_insurance",
+        "retrieved_doc_ids": [
+          "small_finance_banks",
+          "dicgc_insurance",
+          "dicgc_insurance",
+          "dicgc_insurance",
+          "small_finance_banks"
+        ],
+        "doc_rank": 2,
+        "ndcg@5": 0.5296,
+        "abstained": false,
+        "best_score": 0.55
+      },
+      {
+        "qid": "q02",
+        "question": "Is my money in a small finance bank safe? Is Suryoday insured?",
+        "gold_doc": "small_finance_banks",
+        "retrieved_doc_ids": [
+          "dicgc_insurance",
+          "small_finance_banks",
+          "fd_basics",
+          "premature_withdrawal",
+          "compounding_maturity"
+        ],
+        "doc_rank": 2,
+        "ndcg@5": 0.214,
+        "abstained": false,
+        "best_score": 0.3881
+      },
+      {
+        "qid": "q03",
+        "question": "8.5% p.a. ka matlab kya hai?",
+        "gold_doc": "fd_basics",
+        "retrieved_doc_ids": [
+          "fd_basics",
+          "senior_citizen_rates",
+          "premature_withdrawal",
+          "cumulative_vs_payout",
+          "compounding_maturity"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.3392,
+        "abstained": false,
+        "best_score": 0.5835
+      },
+      {
+        "qid": "q04",
+        "question": "If I put 1 lakh for 1 year at 8.5% quarterly compounding, how much will I get at maturity?",
+        "gold_doc": "compounding_maturity",
+        "retrieved_doc_ids": [
+          "compounding_maturity",
+          "cumulative_vs_payout",
+          "compounding_maturity",
+          "senior_citizen_rates",
+          "cumulative_vs_payout"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.5087,
+        "abstained": false,
+        "best_score": 0.4577
+      },
+      {
+        "qid": "q05",
+        "question": "What happens if I break my FD before 12 months?",
+        "gold_doc": "premature_withdrawal",
+        "retrieved_doc_ids": [
+          "premature_withdrawal",
+          "fd_basics",
+          "fd_basics",
+          "cumulative_vs_payout",
+          "senior_citizen_rates"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.3392,
+        "abstained": false,
+        "best_score": 0.4476
+      },
+      {
+        "qid": "q06",
+        "question": "Does the bank deduct tax on FD interest?",
+        "gold_doc": "tax_tds",
+        "retrieved_doc_ids": [
+          "section_80ttb",
+          "tax_tds",
+          "tax_tds",
+          "section_80ttb",
+          "tax_tds"
+        ],
+        "doc_rank": 2,
+        "ndcg@5": 0.5148,
+        "abstained": false,
+        "best_score": 0.4763
+      },
+      {
+        "qid": "q07",
+        "question": "Senior citizen ko FD par kitni extra interest milti hai?",
+        "gold_doc": "senior_citizen_rates",
+        "retrieved_doc_ids": [
+          "senior_citizen_rates",
+          "section_80ttb",
+          "senior_citizen_rates",
+          "senior_citizen_rates",
+          "senior_citizen_rates"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.786,
+        "abstained": false,
+        "best_score": 0.4009
+      },
+      {
+        "qid": "q08",
+        "question": "What tax deduction do senior citizens get on deposit interest?",
+        "gold_doc": "section_80ttb",
+        "retrieved_doc_ids": [
+          "section_80ttb",
+          "tax_tds",
+          "section_80ttb",
+          "tax_tds",
+          "section_80ttb"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.6399,
+        "abstained": false,
+        "best_score": 0.4825
+      },
+      {
+        "qid": "q09",
+        "question": "Monthly interest payout chahiye ya ek saath end mein? Kya farak hai?",
+        "gold_doc": "cumulative_vs_payout",
+        "retrieved_doc_ids": [
+          "cumulative_vs_payout",
+          "cumulative_vs_payout",
+          "fd_basics",
+          "fd_basics",
+          "fd_basics"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.5531,
+        "abstained": false,
+        "best_score": 0.2846
+      },
+      {
+        "qid": "q10",
+        "question": "Who pays the deposit money to my nominee if something happens to me?",
+        "gold_doc": "nomination_kyc",
+        "retrieved_doc_ids": [
+          "nomination_kyc",
+          "fd_basics",
+          "premature_withdrawal",
+          "dicgc_insurance",
+          "nomination_kyc"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.4704,
+        "abstained": false,
+        "best_score": 0.2432
+      },
+      {
+        "qid": "q11",
+        "question": "Which documents do I need to open a fixed deposit?",
+        "gold_doc": "nomination_kyc",
+        "retrieved_doc_ids": [
+          "nomination_kyc",
+          "fd_basics",
+          "section_80ttb",
+          "section_80ttb",
+          "fd_basics"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.3392,
+        "abstained": false,
+        "best_score": 0.3858
+      },
+      {
+        "qid": "q12",
+        "question": "Are Ujjivan and Jana bank deposits covered by deposit insurance like big banks?",
+        "gold_doc": "dicgc_insurance",
+        "retrieved_doc_ids": [
+          "dicgc_insurance",
+          "small_finance_banks",
+          "small_finance_banks",
+          "dicgc_insurance",
+          "dicgc_insurance"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.6164,
+        "abstained": false,
+        "best_score": 0.3856
+      },
+      {
+        "qid": "q13",
+        "question": "If a bank fails, how long does it take to get my insured money back?",
+        "gold_doc": "dicgc_insurance",
+        "retrieved_doc_ids": [
+          "dicgc_insurance",
+          "dicgc_insurance",
+          "dicgc_insurance",
+          "fd_basics",
+          "premature_withdrawal"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.7227,
+        "abstained": false,
+        "best_score": 0.2745
+      },
+      {
+        "qid": "q14",
+        "question": "What is Form 15G and when should I submit it?",
+        "gold_doc": "tax_tds",
+        "retrieved_doc_ids": [
+          "tax_tds",
+          "section_80ttb",
+          "tax_tds",
+          "cumulative_vs_payout",
+          "fd_basics"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.5087,
+        "abstained": false,
+        "best_score": 0.5392
+      },
+      {
+        "qid": "q15",
+        "question": "Why do small finance banks give higher FD rates than big banks?",
+        "gold_doc": "small_finance_banks",
+        "retrieved_doc_ids": [
+          "small_finance_banks",
+          "compounding_maturity",
+          "fd_basics",
+          "small_finance_banks",
+          "premature_withdrawal"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.4852,
+        "abstained": false,
+        "best_score": 0.3503
+      },
+      {
+        "qid": "q16",
+        "question": "₹5 lakh se zyada jama karu to kitna safe hai?",
+        "gold_doc": "dicgc_insurance",
+        "retrieved_doc_ids": [
+          "dicgc_insurance",
+          "small_finance_banks",
+          "small_finance_banks",
+          "dicgc_insurance",
+          "dicgc_insurance"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.6164,
+        "abstained": false,
+        "best_score": 0.4923
+      },
+      {
+        "qid": "q17",
+        "question": "What does quarterly compounding mean for my FD?",
+        "gold_doc": "compounding_maturity",
+        "retrieved_doc_ids": [
+          "compounding_maturity",
+          "compounding_maturity",
+          "fd_basics",
+          "cumulative_vs_payout",
+          "compounding_maturity"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.6844,
+        "abstained": false,
+        "best_score": 0.3367
+      },
+      {
+        "qid": "q18",
+        "question": "Can I withdraw only part of my FD early?",
+        "gold_doc": "premature_withdrawal",
+        "retrieved_doc_ids": [
+          "premature_withdrawal",
+          "premature_withdrawal",
+          "fd_basics",
+          "compounding_maturity",
+          "compounding_maturity"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.5531,
+        "abstained": false,
+        "best_score": 0.295
+      },
+      {
+        "qid": "q19",
+        "question": "How much TDS threshold applies for senior citizens from 2025?",
+        "gold_doc": "tax_tds",
+        "retrieved_doc_ids": [
+          "section_80ttb",
+          "tax_tds",
+          "tax_tds",
+          "compounding_maturity",
+          "senior_citizen_rates"
+        ],
+        "doc_rank": 2,
+        "ndcg@5": 0.3836,
+        "abstained": false,
+        "best_score": 0.5731
+      },
+      {
+        "qid": "q20",
+        "question": "Does nomination mean the nominee keeps all the money legally?",
+        "gold_doc": "nomination_kyc",
+        "retrieved_doc_ids": [
+          "nomination_kyc",
+          "nomination_kyc",
+          "dicgc_insurance",
+          "fd_basics",
+          "fd_basics"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.5531,
+        "abstained": false,
+        "best_score": 0.1914
+      },
+      {
+        "qid": "q21",
+        "question": "8.5% rate par effective yield kitna hota hai quarterly compounding se?",
+        "gold_doc": "compounding_maturity",
+        "retrieved_doc_ids": [
+          "compounding_maturity",
+          "fd_basics",
+          "compounding_maturity",
+          "cumulative_vs_payout",
+          "cumulative_vs_payout"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.5087,
+        "abstained": false,
+        "best_score": 0.3822
+      },
+      {
+        "qid": "q22",
+        "question": "PAN dena zaroori hai FD ke liye? PAN na do to kya hoga?",
+        "gold_doc": "nomination_kyc",
+        "retrieved_doc_ids": [
+          "nomination_kyc",
+          "dicgc_insurance",
+          "nomination_kyc",
+          "fd_basics",
+          "premature_withdrawal"
+        ],
+        "doc_rank": 1,
+        "ndcg@5": 0.5087,
+        "abstained": false,
+        "best_score": 0.2122
+      }
+    ],
+    "abstention_rows": [
+      {
+        "qid": "q23",
+        "question": "Should I invest in mutual funds instead of FD?",
+        "abstained": true,
+        "best_score": 0.156,
+        "closest_topic": "DICGC deposit insurance: how your FD is protected > What DICGC insurance covers > What is not covered"
+      },
+      {
+        "qid": "q24",
+        "question": "What is the current stock price of SBI?",
+        "abstained": true,
+        "best_score": 0.05,
+        "closest_topic": "Fixed deposit basics: what an FD is and what the rate means > What is a fixed deposit"
+      },
+      {
+        "qid": "q25",
+        "question": "Bitcoin mein paisa lagana chahiye?",
+        "abstained": true,
+        "best_score": 0.1488,
+        "closest_topic": "Fixed deposit basics: what an FD is and what the rate means > What is a fixed deposit"
+      },
+      {
+        "qid": "q26",
+        "question": "How do I get a personal loan at a low interest rate?",
+        "abstained": true,
+        "best_score": 0.1439,
+        "closest_topic": "Fixed deposit basics: what an FD is and what the rate means > What is a fixed deposit"
+      },
+      {
+        "qid": "q27",
+        "question": "Which credit card gives the best cashback?",
+        "abstained": true,
+        "best_score": 0.1353,
+        "closest_topic": "Fixed deposit basics: what an FD is and what the rate means > What is a fixed deposit > Minimum and maximum deposit"
+      },
+      {
+        "qid": "q28",
+        "question": "What is the weather in Gorakhpur today?",
+        "abstained": true,
+        "best_score": 0.05,
+        "closest_topic": "Fixed deposit basics: what an FD is and what the rate means > What is a fixed deposit"
+      }
+    ],
+    "answer_rows": [
+      {
+        "qid": "q01",
+        "answered": true,
+        "cited_docs": [
+          "dicgc_insurance",
+          "small_finance_banks"
+        ],
+        "citations_n": 2,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "2/3"
+      },
+      {
+        "qid": "q02",
+        "answered": true,
+        "cited_docs": [
+          "dicgc_insurance",
+          "fd_basics",
+          "small_finance_banks"
+        ],
+        "citations_n": 3,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "3/3"
+      },
+      {
+        "qid": "q03",
+        "answered": true,
+        "cited_docs": [
+          "fd_basics",
+          "premature_withdrawal",
+          "senior_citizen_rates"
+        ],
+        "citations_n": 3,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "2/2"
+      },
+      {
+        "qid": "q04",
+        "answered": true,
+        "cited_docs": [
+          "compounding_maturity",
+          "cumulative_vs_payout"
+        ],
+        "citations_n": 3,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "2/2"
+      },
+      {
+        "qid": "q05",
+        "answered": true,
+        "cited_docs": [
+          "fd_basics",
+          "premature_withdrawal"
+        ],
+        "citations_n": 2,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "3/3"
+      },
+      {
+        "qid": "q06",
+        "answered": true,
+        "cited_docs": [
+          "section_80ttb",
+          "tax_tds"
+        ],
+        "citations_n": 3,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "3/3"
+      },
+      {
+        "qid": "q07",
+        "answered": true,
+        "cited_docs": [
+          "section_80ttb",
+          "senior_citizen_rates"
+        ],
+        "citations_n": 2,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "0/2"
+      },
+      {
+        "qid": "q08",
+        "answered": true,
+        "cited_docs": [
+          "section_80ttb",
+          "tax_tds"
+        ],
+        "citations_n": 3,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "2/2"
+      },
+      {
+        "qid": "q09",
+        "answered": true,
+        "cited_docs": [
+          "cumulative_vs_payout"
+        ],
+        "citations_n": 2,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "3/3"
+      },
+      {
+        "qid": "q10",
+        "answered": true,
+        "cited_docs": [
+          "nomination_kyc"
+        ],
+        "citations_n": 1,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "2/2"
+      },
+      {
+        "qid": "q11",
+        "answered": true,
+        "cited_docs": [
+          "fd_basics",
+          "nomination_kyc"
+        ],
+        "citations_n": 2,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "3/3"
+      },
+      {
+        "qid": "q12",
+        "answered": true,
+        "cited_docs": [
+          "dicgc_insurance",
+          "small_finance_banks"
+        ],
+        "citations_n": 3,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "3/3"
+      },
+      {
+        "qid": "q13",
+        "answered": true,
+        "cited_docs": [
+          "dicgc_insurance"
+        ],
+        "citations_n": 3,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "2/2"
+      },
+      {
+        "qid": "q14",
+        "answered": true,
+        "cited_docs": [
+          "tax_tds"
+        ],
+        "citations_n": 1,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "3/3"
+      },
+      {
+        "qid": "q15",
+        "answered": true,
+        "cited_docs": [
+          "compounding_maturity",
+          "fd_basics",
+          "small_finance_banks"
+        ],
+        "citations_n": 3,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "3/3"
+      },
+      {
+        "qid": "q16",
+        "answered": true,
+        "cited_docs": [
+          "dicgc_insurance",
+          "small_finance_banks"
+        ],
+        "citations_n": 2,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "0/3"
+      },
+      {
+        "qid": "q17",
+        "answered": true,
+        "cited_docs": [
+          "compounding_maturity"
+        ],
+        "citations_n": 2,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "3/3"
+      },
+      {
+        "qid": "q18",
+        "answered": true,
+        "cited_docs": [
+          "fd_basics",
+          "premature_withdrawal"
+        ],
+        "citations_n": 3,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "2/2"
+      },
+      {
+        "qid": "q19",
+        "answered": true,
+        "cited_docs": [
+          "section_80ttb",
+          "tax_tds"
+        ],
+        "citations_n": 2,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "2/2"
+      },
+      {
+        "qid": "q20",
+        "answered": true,
+        "cited_docs": [
+          "nomination_kyc"
+        ],
+        "citations_n": 2,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "2/2"
+      },
+      {
+        "qid": "q21",
+        "answered": true,
+        "cited_docs": [
+          "compounding_maturity",
+          "fd_basics"
+        ],
+        "citations_n": 2,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "2/2"
+      },
+      {
+        "qid": "q22",
+        "answered": true,
+        "cited_docs": [
+          "nomination_kyc"
+        ],
+        "citations_n": 2,
+        "grounded": true,
+        "correct_loose": true,
+        "key_terms_hit": "3/3"
+      }
+    ]
+  }
+}

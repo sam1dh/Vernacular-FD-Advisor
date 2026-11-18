@@ -1,6 +1,32 @@
 
 const API_URL = import.meta.env.VITE_API_URL || 'https://vernacular-fd-advisor.onrender.com'
 
+/**
+ * Grounded RAG chat: returns { reply, citations[], abstained }.
+ * Falls back to null (caller then uses the plain advisor) when the
+ * RAG service is not running.
+ */
+export async function askRag({ userMessage, language = 'hi' }) {
+  if (!userMessage?.trim()) {
+    throw new Error('Message cannot be empty')
+  }
+  const res = await fetch(`${API_URL}/api/rag/chat`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userMessage, language }),
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    throw new Error(err.error || 'RAG service request failed')
+  }
+  const data = await res.json()
+  return {
+    reply: data.reply || '',
+    citations: data.citations || [],
+    abstained: !!data.abstained,
+  }
+}
+
 export async function askAdvisor({ userMessage, language = 'hi', fdContext = null }) {
   if (!userMessage?.trim()) {
     throw new Error('Message cannot be empty')
